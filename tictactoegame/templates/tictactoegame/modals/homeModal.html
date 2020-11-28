@@ -1,0 +1,19 @@
+<!-- HOME MODAL -->
+{% load static %}
+<div id = "homeModal" class="modal">
+    <div class="buttons" id="bot-button">
+        <img src="{% static 'tictactoegame/img/bot.png' %}" alt="" srcset="">
+        <button>Play With Bot</button>
+    </div>
+    <br>
+    <div class="buttons" id="multiplayer-button">
+        <img src="{% static 'tictactoegame/img/friends.png' %}" alt="" srcset="">
+        <button>Play With Friend</button>
+    </div>
+    <br>
+    <div class="links" id="link-section">
+        <p id="link"></p>
+        <button id="copy">Copy</button> 
+    </div>
+    <input type="hidden" id='game-id' value={{boardId}}></input>
+</div>

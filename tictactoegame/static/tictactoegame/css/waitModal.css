@@ -1,0 +1,8 @@
+#waitModal h2{
+    color: #bbbbbb;
+    animation: scaleView 1s infinite ease-in-out;
+}
+
+@keyframes scaleView{
+    50% {transform: scale(1.1);}
+}

@@ -1,0 +1,43 @@
+#gameLayout{
+    width: 100%;
+    height: 450px;
+    justify-content: center;
+    align-items:center;
+    flex-direction: column;
+    margin-top: 5%;
+}
+#info{
+    width: 70%;
+    min-width: 450px;
+    height: 50px;
+    background-color: #d1d1d1;
+    border-radius: 5px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    font-family: 'Galindo', cursive;
+}
+.player-info{
+    padding: 15px;
+}
+#gameLayout ul{
+    width: 375px;
+    display: flex;
+    flex-wrap: wrap;
+    /* display: none; */
+}
+#gameLayout ul li{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    list-style-type: none;
+    background-color: #37B2AB;
+    height: 120px;
+    width: 120px;
+    border-radius: 5px;
+    border: 1px solid #343434;
+    padding: 0px;
+    margin: 0;
+    font-family:'Galindo', cursive ;
+}

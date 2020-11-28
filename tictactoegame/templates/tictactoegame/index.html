@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'tictactoegame/css/index.css'%}?{% now "U" %}">
+    <link rel="stylesheet" href="{% static 'tictactoegame/css/homeModal.css'%}?{% now "U" %}">
+    <link rel="stylesheet" href="{% static 'tictactoegame/css/finishModal_win.css'%}?{% now "U" %}">
+    <link rel="stylesheet" href="{% static 'tictactoegame/css/finishModal_lose.css'%}?{% now "U" %}">
+    <link rel="stylesheet" href="{% static 'tictactoegame/css/gameLayout.css'%}?{% now "U" %}">
+    <link rel="stylesheet" href="{% static 'tictactoegame/css/waitModal.css'%}?{% now "U" %}">
+    <script src="{% static 'tictactoegame/js/homeModal.js'%}?{% now "U" %}"></script>
+    <script src="{% static 'tictactoegame/js/multiplayer.js'%}?{% now "U" %}"></script>
+    <script src="{% static 'tictactoegame/js/common.js'%}?{% now "U" %}"></script>
+    <script src="{% static 'tictactoegame/js/bot.js'%}?{% now "U" %}"></script>
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Galindo&display=swap" rel="stylesheet">
+    <title>TICTACTOE</title>
+</head>
+<body>
+    {% include 'tictactoegame/modals/homeModal.html' %}
+    {% include 'tictactoegame/modals/finishModal_win.html' %}
+    {% include 'tictactoegame/modals/finishModal_lose.html' %}
+    {% include 'tictactoegame/modals/toastModal.html' %}
+    {% include 'tictactoegame/layouts/gameLayout.html' %}
+    {% include 'tictactoegame/modals/waitModal.html' %}
+
+</body>
+</html>

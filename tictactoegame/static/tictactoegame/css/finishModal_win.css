@@ -1,0 +1,26 @@
+.emoji{
+    width: 40px;
+    height: 40px;
+    animation: rotateEmoji 2s infinite;
+}
+#finishModal-win h2{
+    color: #d1d1d1;
+}
+#left-msg{
+    display: none;
+    color: #bbbbbb;
+}
+#gotoHome{
+    outline-style: none;
+    border: none;
+    height: 40px;
+    width: 20%;
+    border-radius: 5px;
+    background-color: #d1d1d1;
+    font-family: 'Galindo', cursive;
+    cursor: pointer;
+    font-size: 15px;
+}
+@keyframes rotateEmoji{
+    100% {transform: rotate(360deg);}
+}
