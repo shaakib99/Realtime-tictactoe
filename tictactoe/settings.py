@@ -26,7 +26,7 @@ SECRET_KEY = 'p9v8)+945klxu+t-8c(r95za+qom8&okoddcm1z35t-xi_-b)6'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['0.0.0.0']
+ALLOWED_HOSTS = ['0.0.0.0','tictactoe-game-basic.herokuapp.com']
 
 
 # Application definition

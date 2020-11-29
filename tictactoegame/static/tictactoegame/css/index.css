@@ -65,3 +65,9 @@ body{
 #waitModal{
     display: none;
 }
+#drawModal{
+    display: none;
+    align-items: center;
+    justify-content: center;
+    color: #bbbbbb;
+}

@@ -53,13 +53,14 @@ class GameConsumer(WebsocketConsumer):
                         'data': data
                     })
 
-        if status == 'close':
+        if status == 'close' or status == 'draw':
             groups = self.channel_layer.groups[boardId]
             for eid in groups:
                 async_to_sync(self.channel_layer.group_discard)(
                     boardId,
                     eid
                 )
+
     def send_msg(self,e):
         self.send(e['data'])
     

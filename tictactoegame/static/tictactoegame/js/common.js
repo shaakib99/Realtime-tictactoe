@@ -1,13 +1,16 @@
 const drawBoard = (matrix) => {
     const board = document.getElementById('board')
     let id = 0
-    for(var i=0; i< matrix.length;i++){
-        for(var j=0;j < matrix[0].length;j++){
-            const li = document.createElement('li')
-            li.id = id
-            li.className = 'box'
-            board.appendChild(li)
-            id++
+    const allLists = document.getElementsByClassName('box')
+    if(allLists.length ===0){
+        for(var i=0; i< matrix.length;i++){
+            for(var j=0;j < matrix[0].length;j++){
+                const li = document.createElement('li')
+                li.id = id
+                li.className = 'box'
+                board.appendChild(li)
+                id++
+            }
         }
     }
 }
@@ -128,4 +131,40 @@ const showToast = (text) =>{
     setTimeout(()=>{
         toastElem.style.opacity = 0
     },2000)
+}
+
+const isDraw = () => {
+    let draw = true
+    const allLists = document.getElementsByClassName('box')
+    for(var i=0;i<allLists.length;i++){
+        const li = allLists[i]
+        if(li.innerHTML === ''){
+            draw = false
+            break
+        }
+    }
+    return draw
+}
+
+const showDrawBanner = () => {
+    hideAllModal()
+    document.getElementById('gameLayout').style.display = 'none';
+    document.getElementById('drawModal').style.display = 'flex'
+}
+
+const showErrorBanner = (text) =>{
+    const errElem = document.createElement('div')
+        const button = document.createElement('button')
+        button.id = 'gotoHome'
+        button.className = 'gotoHomeButton'
+        button.innerHTML = "Home"
+        errElem.className = 'modal';
+        errElem.style.color = '#bbbbbb';
+        // errElem.innerHTML = 'Something went wrong 😔';
+        errElem.innerHTML = text
+        errElem.appendChild(button)
+        button.addEventListener('click',()=>{
+            window.location.href = host + 'tictactoe/'
+        })
+        document.body.appendChild(errElem);
 }

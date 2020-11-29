@@ -1,1 +1,1 @@
-web: daphne -b 0.0.0.0 -p 8001 tictactoe.asgi:application
+web: daphne -b 0.0.0.0 -p $PORT tictactoe.asgi:application

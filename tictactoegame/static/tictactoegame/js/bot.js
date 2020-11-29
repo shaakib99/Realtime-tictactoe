@@ -44,9 +44,13 @@ const onBoxClick = (e) =>{
         li.innerHTML = symbolOfPlayer
         playerturn = playerturn === 0 ? 1 : 0
         let matrix = [[-1,-1,-1],[-1,-1,-1],[-1,-1,-1]]
-        !checkForGameOver(symbolOfPlayer,matrix) ? 
-            game(playerturn,symbolOfPlayer,symbolOfBot)
-            : finishGame(player)
+        const isGameOver = checkForGameOver(symbolOfPlayer,matrix)
+        const gameDraw = isDraw()
+        if( !isGameOver && gameDraw){
+            showDrawBanner()
+        }else{
+            !isGameOver ? game(playerturn,symbolOfPlayer,symbolOfBot) : finishGame(player)
+        }
     }
     else
         flashLi(id)
@@ -72,7 +76,11 @@ const randomInput = (symbol) => {
     document.getElementById(emptyLId[randomIndex]).innerHTML = symbol
     playerturn = playerturn === 0 ? 1 : 0
     let matrix = [[-1,-1,-1],[-1,-1,-1],[-1,-1,-1]]
-    !checkForGameOver(symbolOfBot,matrix) ? 
-            game(playerturn,symbolOfPlayer,symbolOfBot)
-            : finishGame(bot)
+    const isGameOver = checkForGameOver(symbolOfBot,matrix)
+    const gameDraw = isDraw()
+    if( !isGameOver && gameDraw){
+        showDrawBanner()
+    }else{
+        !isGameOver ? game(playerturn,symbolOfPlayer,symbolOfBot) : finishGame(bot)
+    }
 }

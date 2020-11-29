@@ -6,15 +6,24 @@ const handleMultiplayerEvent = (gameId,player) => {
 
     player == 1 ? showWaitBanner() : null;
 
-    let link = 'ws://'+window.location.host+'/ws/game/'+gameId+'/';
+    let link = 'wss://'+window.location.host+'/ws/game/'+gameId+'/';
     let gameSocket = new WebSocket(link);
     
     gameSocket.onopen = (e) =>{}
+    let gameStarted = false
+    setTimeout(()=>{
+        if(!gameStarted){
+            hideAllModal()
+            showErrorBanner('No response from other player')
+            gameSocket.close()
+        }
+    },15*1000)
     const sendData = (data) => {
         gameSocket.send(data)
     }
     gameSocket.onmessage = (e)=>{
         let data = JSON.parse(e.data)
+        gameStarted = true
         let playerSymbol = data.symbols !== undefined ? data.symbols[player] : null
         let playerturn = data.playerturn !== undefined ? data.playerturn : null
         if(data.status === initiate){
@@ -40,6 +49,11 @@ const handleMultiplayerEvent = (gameId,player) => {
                 document.getElementById('left-msg').style.display = 'flex'
                 document.getElementById('finishModal-win').style.display = 'flex'
             }
+            gameSocket.close()
+        }
+        else if(data.status === 'draw'){
+            showDrawBanner()
+            gameSocket.close()
         }
         playerturn === player ? addClickListenertoList(data,sendData,playerSymbol) 
         : removeClickListenertoList(data,sendData,playerSymbol)
@@ -49,11 +63,8 @@ const handleMultiplayerEvent = (gameId,player) => {
         document.getElementById('homeModal').style.display = 'none';
         document.getElementById('waitModal').style.display = 'none';
 
-        const errElem = document.createElement('div')
-        errElem.className = 'modal';
-        errElem.style.color = '#bbbbbb';
-        errElem.innerHTML = 'Something went wrong 😔';
-        document.body.appendChild(errElem);
+        showErrorBanner('Something went wrong 😔')
+        gameSocket.close()
     }
 
 }
@@ -85,9 +96,15 @@ const sendClickedData = (e)=>{
         let isGameOver = checkForGameOver(info.symbol,data.matrix)
         data.changedCoord = idToMat(id)
         data.changedBy = player
+        console.log(isGameOver)
         data.status = isGameOver ? 'close' : 'initiated'
         data.win = isGameOver ? player : null
         data.status === 'close' ? finishGame(data.win) : null
+        
+        const gameDraw = data.win === null && isDraw()
+        data.status = gameDraw ? 'draw' : data.status
+
+        gameDraw ? showDrawBanner() : null
         info.send(JSON.stringify(data))
     }
     else{

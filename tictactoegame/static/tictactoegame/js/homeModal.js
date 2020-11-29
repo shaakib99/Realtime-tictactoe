@@ -1,7 +1,7 @@
 let player = null;
 let matrix = null;
 let maxGameId = 100000;
-const host = 'http://0.0.0.0:8001'+"/"
+const host = 'https://tictactoe-game-basic.herokuapp.com/'
 window.onload = ()=>{
     let gameId = document.getElementById('game-id').value;
     player = gameId === 'None' ? 0 : 1;
@@ -27,7 +27,7 @@ window.onload = ()=>{
 const showgeneratedGameId = () =>{
     let randomIntNumber = Math.floor(Math.random()*maxGameId);
     const target = document.getElementById('link-section');
-    let link = 'http://' + window.location.host + '/tictactoe/'+randomIntNumber;
+    let link = 'https://' + window.location.host + '/tictactoe/'+randomIntNumber;
     target.childNodes[1].innerHTML = link; //  target.childNodes[1] p tag in links div
 
     const multiplayerButton = document.getElementById('multiplayer-button');
